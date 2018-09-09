@@ -3,6 +3,7 @@ from psycopg2.extras import RealDictCursor
 from http_reqs import get_stations, find_connection, safe_to_int
 from datetime import date
 from pprint import pprint
+from time import time
 
 # from itertools import iteritems
 
@@ -79,12 +80,26 @@ def add_to_databse(connection):
 
 if __name__ == "__main__":
     data = {}
+    l = len(stations)
+    t0 = time()
     for i, source in enumerate(stations):
-
         for n, destination in enumerate(stations):
-            if n % 100 == 0:
-                perc = round(i / (len(stations) ** 2), 3)
-                print("Progress:", perc, "%", "-" * 80)
+            if n % 1000 == 0:
+
+                perc = round((i * l + n) / (l * l), 5)
+                try:
+                    print(
+                        "Progress:",
+                        perc,
+                        "%",
+                        "Elapsed",
+                        round(t0 - time(), 2),
+                        "Remaining:",
+                        round((t0 - time()) / perc, 2),
+                        "-" * 80,
+                    )
+                except ZeroDivisionError:
+                    pass
 
             trip = {
                 "src_name": source["name"],
