@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search ALSA</title>
+</head>
+<body>
+Searching for connections: {{search}}
+<ul>
+   {% for result in results %}
+<li>{{result}}
+</li>{% endfor %}</ul>
+
+Loaded in {{t}}s
+</body>
+</html>
