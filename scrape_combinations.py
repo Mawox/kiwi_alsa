@@ -93,9 +93,9 @@ if __name__ == "__main__":
                         perc,
                         "%",
                         "Elapsed",
-                        round(t0 - time(), 2),
-                        "Remaining:",
-                        round((t0 - time()) / perc, 2),
+                        round((time() - t0)/60, 2),
+                        "min. Remaining:",
+                        round((time() - t0) / (perc*60), 2),"min. ",
                         "-" * 80,
                     )
                 except ZeroDivisionError:
